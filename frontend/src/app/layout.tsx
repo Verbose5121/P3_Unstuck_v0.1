@@ -1,9 +1,14 @@
 "use client";
 import "./globals.css";
+import React, { useState } from "react";
+
 import { Inter } from "next/font/google";
 import { Providers } from "./providers";
+import { Center, Square, Circle } from "@chakra-ui/react";
 import { Link } from "@chakra-ui/next-js";
 import { Button } from "@chakra-ui/react";
+import LoginForm from "./LoginForm";
+import Footer from "./Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,24 +19,40 @@ const inter = Inter({ subsets: ["latin"] });
 // };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const [login, setlogin] = useState(false);
+  const [signup, setSignup] = useState(false);
+
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Providers>
-          {" "}
-          <header>
+        <main>
+          <Providers>
             <nav className="nav">
-              <Link href="/" className="logo" style={{ textDecoration: "none" }}>
-                Unstuck
-              </Link>
-              <Button>Test Button</Button>
+              <Center>
+                <Link href="/" className="logo" style={{ textDecoration: "none" }}>
+                  Unstuck
+                </Link>
+              </Center>
+
+              <Button
+                onClick={() => {
+                  setlogin(true);
+                  setSignup(false);
+                }}
+              >
+                Login
+              </Button>
+
+              <Button>Sign Up</Button>
             </nav>
-          </header>
-          {children}
-          <footer className="footer">
-            <p>Copyrights @ Team 1 (just some example footer content) </p>
-          </footer>
-        </Providers>
+            <div className="login-form">
+              <LoginForm />
+            </div>
+
+            {children}
+            <Footer />
+          </Providers>
+        </main>
       </body>
     </html>
   );
