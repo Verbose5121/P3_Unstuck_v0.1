@@ -8,11 +8,7 @@ const Footer: FC<FooterProps> = ({}) => {
   return (
     <div>
       <Link href="/about" style={{ textDecoration: "none" }}>
-        {" "}
-        <Button colorScheme="teal" variant="outline" size="sm">
-          {" "}
-          About
-        </Button>
+        About
       </Link>
     </div>
   );
