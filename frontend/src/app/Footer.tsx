@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import NextLink from "next/link";
+import Link from "next/link";
 import { Button } from "@chakra-ui/react";
 
 interface FooterProps {}
@@ -7,11 +7,13 @@ interface FooterProps {}
 const Footer: FC<FooterProps> = ({}) => {
   return (
     <div>
-      <NextLink href="/about" passHref>
-        <Button as="a" color="blue.400" _hover={{ color: "blue.500" }}>
+      <Link href="/about" style={{ textDecoration: "none" }}>
+        {" "}
+        <Button colorScheme="teal" variant="outline" size="sm">
+          {" "}
           About
         </Button>
-      </NextLink>
+      </Link>
     </div>
   );
 };
