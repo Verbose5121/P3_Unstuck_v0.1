@@ -1,5 +1,5 @@
 import { Test } from '@nestjs/testing';
-import { OpenaiService } from '../openai.service';
+import { OpenaiService } from '../openai/openai.service';
 import { OpenAIApi } from 'openai';
 
 jest.mock('openai', () => ({
