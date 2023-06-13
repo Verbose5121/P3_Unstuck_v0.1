@@ -14,6 +14,18 @@ async function bootstrap() {
     .setTitle('Example API')
     .setDescription('Example API description')
     .setVersion('1.0')
+    .addSecurity('openaiAuth', {
+      type: 'http',
+      scheme: 'bearer',
+      bearerFormat: 'JWT',
+      in: 'header',
+      name: 'Authorization',
+    })
+    // .addSecurity('openaiOrg', {
+    //   type: 'apiKey',
+    //   in: 'header',
+    //   name: 'OpenAI-Organization',
+    // })
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

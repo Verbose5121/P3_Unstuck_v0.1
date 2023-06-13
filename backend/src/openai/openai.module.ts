@@ -4,9 +4,7 @@ import { OpenaiService } from './openai.service';
 import { OpenaiController } from './openai.controller';
 
 @Module({
-  imports: [
-    ConfigModule.forRoot(), // load .env file
-  ],
+  imports: [ConfigModule],
   providers: [OpenaiService],
   controllers: [OpenaiController],
   exports: [OpenaiService], // make sure to export any services you want to use in other modules

@@ -1,14 +1,18 @@
 import { Injectable, Logger } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { Configuration, OpenAIApi } from 'openai';
+
+console.log();
 
 @Injectable()
 export class OpenaiService {
   private openai: any;
   private readonly logger = new Logger(OpenaiService.name);
 
-  constructor() {
+  constructor(private configService: ConfigService) {
     const configuration = new Configuration({
-      apiKey: process.env.OPENAI_API_KEY,
+      apiKey: this.configService.get('OPENAI_API_KEY'),
+      organization: this.configService.get('ORGANIZATION_API_KEY'),
     });
     this.openai = new OpenAIApi(configuration);
   }
@@ -26,7 +30,7 @@ export class OpenaiService {
       return completionText.trim();
     } catch (e) {
       this.logger.log('Failed to execute getResponse', e);
-      return 'default msg bc I still dont have a subscription for the API...';
+      return "default msg bc I still don't have a subscription for the API...";
     }
   }
 

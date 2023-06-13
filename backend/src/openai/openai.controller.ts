@@ -1,4 +1,4 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get, Headers, Logger, Query } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { OpenaiService } from './openai.service';
 
@@ -6,6 +6,7 @@ import { OpenaiService } from './openai.service';
 @ApiTags('openai')
 export class OpenaiController {
   constructor(private readonly openaiService: OpenaiService) {}
+  private readonly logger = new Logger(OpenaiController.name);
 
   @Get('/chat')
   @ApiOperation({ summary: 'Send chatGPT a prompt' })
