@@ -1,16 +1,18 @@
-import type { FC } from "react";
+import type { NextComponentType, NextPageContext } from "next";
 import Link from "next/link";
-import { Button } from "@chakra-ui/react";
 
-interface FooterProps {}
+interface Props {}
 
-const Footer: FC<FooterProps> = ({}) => {
+const Footer: NextComponentType<NextPageContext, {}, Props> = (props: Props) => {
   return (
-    <div>
-      <Link href="/about" style={{ textDecoration: "none" }}>
+    <footer>
+      <Link
+        href="/about"
+        style={{ textDecoration: "none" }}>
         About
       </Link>
-    </div>
+    </footer>
   );
 };
+
 export default Footer;

@@ -14,35 +14,6 @@
   justify-content: space-between;
 }
 
-.main {
-  display: flex;
-  flex-direction: column;
-  flex: auto;
-  justify-content: space-between;
-  align-items: center;
-  padding: 6rem;
-  min-height: 100vh;
-}
-
-.footer {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  text-align: center;
-  justify-content: center;
-  align-content: space-evenly;
-  flex-grow: 0;
-
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: rgba(201, 227, 211, 0.254);
-
-  color: rgb(46, 46, 46);
-  font-size: 75%;
-  height: fit-content;
-}
-
 .description {
   display: inherit;
   justify-content: inherit;
