@@ -10,52 +10,36 @@ import {
 } from "@chakra-ui/react";
 import { Stack, HStack, VStack } from "@chakra-ui/react";
 import { Box, Center, Link, Button, Card, Input } from "@chakra-ui/react";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { useRouter } from 'next/navigation'
+import { useState } from 'react'
+
+import type { Database } from "../../../lib/database.types";
+import AuthForm from "@/authform";
+
 
 export default function Login() {
+
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const router = useRouter()
+  const supabase = createClientComponentClient<Database>()
+
+  const handleSignIn = async () => {
+    await supabase.auth.signInWithPassword({
+      email,
+      password,
+    })
+    router.refresh()
+  }
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut()
+    router.refresh()
+  }
   return (
     <div style={{ margin: "5rem" }}>
-      <Card>
-        <CardHeader>Sign up for an account</CardHeader>
-        <CardBody>
-          <FormControl isRequired>
-            <VStack
-              spacing="5px"
-              align="center">
-              <FormLabel>Email</FormLabel>
-              <Input
-                style={{ textAlign: "center" }}
-                placeholder="Email"
-                size="lg"
-              />
-              <FormLabel>Password</FormLabel>
-              <Input
-                style={{ textAlign: "center" }}
-                placeholder="Password"
-                size="lg"
-                type="password"
-              />
-              <Button
-                colorScheme="teal"
-                variant="outline"
-                size="lg">
-                {" "}
-                Submit
-              </Button>
-              <CardFooter>
-                <p>
-                  Don't have an account?{" "}
-                  <Link
-                    href="/signup"
-                    className="signup-link"
-                    style={{ color: "fuchsia" }}>
-                    Signup
-                  </Link>
-                </p>
-              </CardFooter>
-            </VStack>
-          </FormControl>
-        </CardBody>
-      </Card>
+      <AuthForm />
     </div>
   );
 }
