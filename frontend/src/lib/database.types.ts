@@ -9,6 +9,40 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
+      class_codes: {
+        Row: {
+          class_code: number
+          created_at: string | null
+          sherpas: string | null
+          students: string | null
+        }
+        Insert: {
+          class_code?: number
+          created_at?: string | null
+          sherpas?: string | null
+          students?: string | null
+        }
+        Update: {
+          class_code?: number
+          created_at?: string | null
+          sherpas?: string | null
+          students?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "class_codes_sherpas_fkey"
+            columns: ["sherpas"]
+            referencedRelation: "sherpas"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "class_codes_students_fkey"
+            columns: ["students"]
+            referencedRelation: "students"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
       countries: {
         Row: {
           id: number
@@ -58,29 +92,82 @@ export interface Database {
           }
         ]
       }
-      user_details: {
+      sherpas: {
         Row: {
+          class_codes: number[] | null
           created_at: string | null
-          first_name: string | null
+          first_name: string
+          id: string
           last_name: string | null
-          user_id: number
-          username: string | null
         }
         Insert: {
+          class_codes?: number[] | null
           created_at?: string | null
-          first_name?: string | null
+          first_name: string
+          id: string
           last_name?: string | null
-          user_id?: number
-          username?: string | null
         }
         Update: {
+          class_codes?: number[] | null
           created_at?: string | null
-          first_name?: string | null
+          first_name?: string
+          id?: string
           last_name?: string | null
-          user_id?: number
-          username?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "sherpas_id_fkey"
+            columns: ["id"]
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      students: {
+        Row: {
+          avatar_url: string | null
+          class_codes: number | null
+          created_at: string | null
+          email: string | null
+          first_name: string | null
+          id: string
+          last_name: string | null
+          username: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          class_codes?: number | null
+          created_at?: string | null
+          email?: string | null
+          first_name?: string | null
+          id: string
+          last_name?: string | null
+          username: string
+        }
+        Update: {
+          avatar_url?: string | null
+          class_codes?: number | null
+          created_at?: string | null
+          email?: string | null
+          first_name?: string | null
+          id?: string
+          last_name?: string | null
+          username?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "students_class_codes_fkey"
+            columns: ["class_codes"]
+            referencedRelation: "class_codes"
+            referencedColumns: ["class_code"]
+          },
+          {
+            foreignKeyName: "students_id_fkey"
+            columns: ["id"]
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
       }
     }
     Views: {
