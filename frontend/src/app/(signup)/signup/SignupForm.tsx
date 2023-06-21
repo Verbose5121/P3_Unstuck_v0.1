@@ -12,32 +12,37 @@ import {
   CardBody,
   CardFooter,
   VStack,
+  Select,
 } from "@chakra-ui/react";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { Session, createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 
 import type { Database } from "../../../lib/database.types";
 
-export default function LoginPage() {
+export default function SignupForm({ session }: { session: Session | null }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const router = useRouter();
   const supabase = createClientComponentClient<Database>();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleLogin = async () => {
-    await supabase.auth.signInWithPassword({
+  const handleSignUp = async () => {
+    console.log("trying to initially create user in auth table");
+    await supabase.auth.signUp({
       email,
       password,
+      options: {
+        emailRedirectTo: `${location.origin}/auth/callback`,
+      },
     });
-    router.replace("/dashboard");
-  };
+    // router.refresh();
 
+    // router.replace("/profile");
+  };
   return (
     <div style={{ margin: "5rem" }}>
       <Card>
-        <CardHeader>Login To Unstuck</CardHeader>
+        <CardHeader>Sign up for an account</CardHeader>
         <CardBody>
           <FormControl isRequired>
             <VStack
@@ -64,18 +69,19 @@ export default function LoginPage() {
                 colorScheme="teal"
                 variant="outline"
                 size="lg"
-                onClick={handleLogin}>
+                onClick={handleSignUp}>
                 {" "}
                 Submit
               </Button>
+
               <CardFooter>
                 <p>
                   Want to{" "}
                   <Link
-                    href="/signup"
+                    href="/login"
                     className="login-link"
                     style={{ color: "fuchsia" }}>
-                    Sign Up
+                    Login
                   </Link>{" "}
                   instead?
                 </p>
