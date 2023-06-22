@@ -14,47 +14,16 @@ export interface Database {
           class_code: number
           created_at: string | null
           sherpas: string | null
-          students: string | null
         }
         Insert: {
           class_code?: number
           created_at?: string | null
           sherpas?: string | null
-          students?: string | null
         }
         Update: {
           class_code?: number
           created_at?: string | null
           sherpas?: string | null
-          students?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "class_codes_sherpas_fkey"
-            columns: ["sherpas"]
-            referencedRelation: "sherpas"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "class_codes_students_fkey"
-            columns: ["students"]
-            referencedRelation: "students"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
-      countries: {
-        Row: {
-          id: number
-          name: string
-        }
-        Insert: {
-          id?: number
-          name: string
-        }
-        Update: {
-          id?: number
-          name?: string
         }
         Relationships: []
       }
@@ -94,30 +63,30 @@ export interface Database {
       }
       sherpas: {
         Row: {
-          class_codes: number[] | null
           created_at: string | null
           first_name: string
           id: string
           last_name: string | null
+          user_id: string | null
         }
         Insert: {
-          class_codes?: number[] | null
           created_at?: string | null
           first_name: string
-          id: string
+          id?: string
           last_name?: string | null
+          user_id?: string | null
         }
         Update: {
-          class_codes?: number[] | null
           created_at?: string | null
           first_name?: string
           id?: string
           last_name?: string | null
+          user_id?: string | null
         }
         Relationships: [
           {
-            foreignKeyName: "sherpas_id_fkey"
-            columns: ["id"]
+            foreignKeyName: "sherpas_user_id_fkey"
+            columns: ["user_id"]
             referencedRelation: "users"
             referencedColumns: ["id"]
           }
@@ -131,6 +100,7 @@ export interface Database {
           first_name: string | null
           id: string
           last_name: string | null
+          user_id: string | null
           username: string
         }
         Insert: {
@@ -138,8 +108,9 @@ export interface Database {
           class_codes?: number | null
           created_at?: string | null
           first_name?: string | null
-          id: string
+          id?: string
           last_name?: string | null
+          user_id?: string | null
           username: string
         }
         Update: {
@@ -149,6 +120,7 @@ export interface Database {
           first_name?: string | null
           id?: string
           last_name?: string | null
+          user_id?: string | null
           username?: string
         }
         Relationships: [
@@ -159,8 +131,8 @@ export interface Database {
             referencedColumns: ["class_code"]
           },
           {
-            foreignKeyName: "students_id_fkey"
-            columns: ["id"]
+            foreignKeyName: "students_user_id_fkey"
+            columns: ["user_id"]
             referencedRelation: "users"
             referencedColumns: ["id"]
           }
