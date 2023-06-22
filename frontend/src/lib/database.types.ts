@@ -9,54 +9,42 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
-      class_codes: {
+      expeditions: {
         Row: {
-          class_code: number
           created_at: string | null
-          sherpas: string | null
-          students: string | null
+          expedition_title: string | null
+          id: number
+          topic_id: number | null
+          user_id: string | null
         }
         Insert: {
-          class_code?: number
           created_at?: string | null
-          sherpas?: string | null
-          students?: string | null
+          expedition_title?: string | null
+          id?: number
+          topic_id?: number | null
+          user_id?: string | null
         }
         Update: {
-          class_code?: number
           created_at?: string | null
-          sherpas?: string | null
-          students?: string | null
+          expedition_title?: string | null
+          id?: number
+          topic_id?: number | null
+          user_id?: string | null
         }
         Relationships: [
           {
-            foreignKeyName: "class_codes_sherpas_fkey"
-            columns: ["sherpas"]
-            referencedRelation: "sherpas"
+            foreignKeyName: "expeditions_topic_id_fkey"
+            columns: ["topic_id"]
+            referencedRelation: "topics"
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "class_codes_students_fkey"
-            columns: ["students"]
-            referencedRelation: "students"
+            foreignKeyName: "expeditions_user_id_fkey"
+            columns: ["user_id"]
+            referencedRelation: "users"
             referencedColumns: ["id"]
           }
         ]
-      }
-      countries: {
-        Row: {
-          id: number
-          name: string
-        }
-        Insert: {
-          id?: number
-          name: string
-        }
-        Update: {
-          id?: number
-          name?: string
-        }
-        Relationships: []
       }
       profiles: {
         Row: {
@@ -92,78 +80,69 @@ export interface Database {
           }
         ]
       }
-      sherpas: {
+      topics: {
         Row: {
-          class_codes: number[] | null
           created_at: string | null
-          first_name: string
-          id: string
-          last_name: string | null
+          id: number
+          join_code: number | null
+          topic_string: string | null
+          user_id: string | null
         }
         Insert: {
-          class_codes?: number[] | null
           created_at?: string | null
-          first_name: string
-          id: string
-          last_name?: string | null
+          id?: number
+          join_code?: number | null
+          topic_string?: string | null
+          user_id?: string | null
         }
         Update: {
-          class_codes?: number[] | null
           created_at?: string | null
-          first_name?: string
-          id?: string
-          last_name?: string | null
+          id?: number
+          join_code?: number | null
+          topic_string?: string | null
+          user_id?: string | null
         }
         Relationships: [
           {
-            foreignKeyName: "sherpas_id_fkey"
-            columns: ["id"]
+            foreignKeyName: "topics_user_id_fkey"
+            columns: ["user_id"]
             referencedRelation: "users"
             referencedColumns: ["id"]
           }
         ]
       }
-      students: {
+      user_details: {
         Row: {
           avatar_url: string | null
-          class_codes: number | null
           created_at: string | null
-          email: string | null
+          display_name: string | null
           first_name: string | null
-          id: string
           last_name: string | null
-          username: string
+          user_id: string
+          user_type: string | null
         }
         Insert: {
           avatar_url?: string | null
-          class_codes?: number | null
           created_at?: string | null
-          email?: string | null
+          display_name?: string | null
           first_name?: string | null
-          id: string
           last_name?: string | null
-          username: string
+          user_id: string
+          user_type?: string | null
         }
         Update: {
           avatar_url?: string | null
-          class_codes?: number | null
           created_at?: string | null
-          email?: string | null
+          display_name?: string | null
           first_name?: string | null
-          id?: string
           last_name?: string | null
-          username?: string
+          user_id?: string
+          user_type?: string | null
         }
         Relationships: [
           {
-            foreignKeyName: "students_class_codes_fkey"
-            columns: ["class_codes"]
-            referencedRelation: "class_codes"
-            referencedColumns: ["class_code"]
-          },
-          {
-            foreignKeyName: "students_id_fkey"
-            columns: ["id"]
+            foreignKeyName: "user_details_user_id_fkey"
+            columns: ["user_id"]
             referencedRelation: "users"
             referencedColumns: ["id"]
           }

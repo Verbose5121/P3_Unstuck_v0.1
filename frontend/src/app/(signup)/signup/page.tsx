@@ -1,8 +1,8 @@
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 
-import type { Database } from "@/lib/database.types";
-import SignupForm from "./SignupForm";
+import type { Database } from "../../../lib/database.types";
+import SignupForm from "../../../components/forms/SignupForm";
 
 export default async function SignupPage() {
   const supabase = createServerComponentClient<Database>({ cookies });
