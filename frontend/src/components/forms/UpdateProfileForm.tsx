@@ -29,7 +29,7 @@ export default function UpdateProfileForm() {
     const {
       data: { user },
     } = await supabase.auth.getUser();
-    console.log("user object: ", user);
+    console.log("user object: 1", user);
     console.log("trying to create new user_details record");
     const { data, error } = await supabase.from("user_details").upsert([
       {
