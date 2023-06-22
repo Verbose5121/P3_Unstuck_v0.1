@@ -18,7 +18,7 @@ import { Session, createClientComponentClient } from "@supabase/auth-helpers-nex
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 
-import type { Database } from "../../../lib/database.types";
+import type { Database } from "../../lib/database.types";
 
 export default function SignupForm({ session }: { session: Session | null }) {
   const [email, setEmail] = useState("");

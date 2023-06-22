@@ -31,7 +31,7 @@ export default function LoginPage() {
       email,
       password,
     });
-    router.replace("/dashboard");
+    router.replace("/student-dashboard");
   };
 
   return (
