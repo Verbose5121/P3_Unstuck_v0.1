@@ -66,7 +66,7 @@ export default function SignupForm({ session }: { session: Session | null }) {
                 value={password}
               />
               <Button
-                onClick={handleSignIn}
+                onClick={handleSignUp}
                 colorScheme="teal"
                 variant="outline"
                 size="lg">
