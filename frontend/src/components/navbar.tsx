@@ -1,9 +1,9 @@
 "use-client";
 /*
-*
+*   Todo: Add logged in dependencies for displaying links/buttons
+*   Todo: Add user avatar url variable (line 120)
 *   Todo: Use .map with navbaritems to populate items
 *   Todo: Fix up styling
-*   Todo: Add logged in dependencies for displaying links/buttons
 *   Todo: On mobile display, show login/signup in place of Avatar icon on signed out state 
 */
 
@@ -32,9 +32,9 @@ import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import type { Database } from "@/lib/database.types";
 
-interface Props {}
+interface NavBarProps {}
 
-const NavBar: NextComponentType<NextPageContext, {}, Props> = (props: Props) => {
+const NavBar: NextComponentType<NextPageContext, {}, NavBarProps> = (props: NavBarProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const router = useRouter();
   const supabase = createClientComponentClient<Database>();
