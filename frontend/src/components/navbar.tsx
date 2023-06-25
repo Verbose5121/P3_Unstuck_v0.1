@@ -30,7 +30,7 @@ import {
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import type { Database } from "@/lib/database.types";
+import type { Database } from "../lib/database.types";
 
 interface NavBarProps {}
 
@@ -42,7 +42,7 @@ const NavBar: NextComponentType<NextPageContext, {}, NavBarProps> = (props: NavB
   const handleSignOut = async () => {
     await supabase.auth.signOut();
     router.push("/");
-  };
+};
 
   return (
     <>
