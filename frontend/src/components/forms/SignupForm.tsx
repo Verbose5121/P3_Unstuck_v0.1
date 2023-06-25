@@ -48,7 +48,7 @@ export default function SignupForm({ session }: { session: Session | null }) {
             <VStack
               spacing="5px"
               align="center">
-              <FormLabel>Email Address</FormLabel>
+              <FormLabel>Email</FormLabel>
               <Input
                 style={{ textAlign: "center" }}
                 placeholder="Email"
@@ -66,24 +66,22 @@ export default function SignupForm({ session }: { session: Session | null }) {
                 value={password}
               />
               <Button
+                onClick={handleSignUp}
                 colorScheme="teal"
                 variant="outline"
-                size="lg"
-                onClick={handleSignUp}>
+                size="lg">
                 {" "}
                 Submit
               </Button>
-
               <CardFooter>
                 <p>
-                  Want to{" "}
+                  Don't have an account?{" "}
                   <Link
-                    href="/login"
-                    className="login-link"
+                    href="/signup"
+                    className="signup-link"
                     style={{ color: "fuchsia" }}>
-                    Login
-                  </Link>{" "}
-                  instead?
+                    Signup
+                  </Link>
                 </p>
               </CardFooter>
             </VStack>

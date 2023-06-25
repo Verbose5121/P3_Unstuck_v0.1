@@ -8,7 +8,7 @@ import {
   CardBody,
   CardFooter,
   Select,
-} from "@chakra-ui/react";
+} from "@chakra-ui/react"; 
 import { Stack, HStack, VStack } from "@chakra-ui/react";
 import { Box, Center, Link, Button, Card, Input } from "@chakra-ui/react";
 import type { Database } from "../../lib/database.types";
