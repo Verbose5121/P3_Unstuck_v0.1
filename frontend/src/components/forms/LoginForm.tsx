@@ -30,26 +30,10 @@ export default function LoginForm({ session }: { session: Session | null }) {
         email,
         password,
       });
-      // router.refresh();
-  
-      // router.replace("/profile");
+
+      router.replace ("/profile");
+
     };
-    
-    
-    
-    // const router = useRouter();
-    // const supabase = createClientComponentClient<Database>();
-    // const [email, setEmail] = useState("");
-    // const [password, setPassword] = useState("");
-    // let flag:boolean = false
-    // const handleLogin = async () => {
-    //   await supabase.auth.signInWithPassword({
-    //     email,
-    //     password,
-    //   })
-      // if (Error.name=='AuthInvalidCredentialsError') {let flag = true;} 
-      // else {router.replace("/student-dashboard");
-      
 
   
     return (
