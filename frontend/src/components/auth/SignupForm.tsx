@@ -37,7 +37,7 @@ const SignupForm: FC = (props): JSX.Element => {
   };
   return (
     <div style={{ margin: "5rem" }}>
-      <h1>This is the signin form loaded from components, on the main page</h1>
+      <h1>This is the Sign Up form loaded from components, on the main page</h1>
       <h2>
         An app that leverages the use of project based learning to enhance the student learning
         experience and empowers students with important critical thinking and problem solving
