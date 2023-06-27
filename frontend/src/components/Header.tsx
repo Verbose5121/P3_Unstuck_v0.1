@@ -1,29 +1,19 @@
 "use-client";
-import type { NextComponentType, NextPageContext } from "next";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { Session, createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+
 import type { Database } from "../lib/database.types";
-import NavBar from "./Navbar";
-import Link from "next/link";
-import { Center, Button } from "@chakra-ui/react";
 
-interface Props {}
+import NavBar from "./NavBar";
 
-const Header: NextComponentType<NextPageContext, {}, Props> = (props: Props) => {
+export default async function () {
   const router = useRouter();
   const supabase = createClientComponentClient<Database>();
 
-  const handleSignOut = async () => {
-    await supabase.auth.signOut();
-    router.push("/");
-  };
   return (
     <header>
       {" "}
-    <NavBar />
+      <NavBar />
     </header>
   );
-};
-
-export default Header;
+}

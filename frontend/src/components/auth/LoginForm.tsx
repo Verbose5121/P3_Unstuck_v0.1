@@ -12,43 +12,49 @@ import {
   CardBody,
   CardFooter,
   VStack,
-  Select,
 } from "@chakra-ui/react";
-import { Session, createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import { useRouter } from "next/navigation";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { redirect, useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 
 import type { Database } from "../../lib/database.types";
 
-export default function SignupForm({ session }: { session: Session | null }) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+export default function LoginForm() {
   const router = useRouter();
   const supabase = createClientComponentClient<Database>();
 
-  const handleSignUp = async () => {
-    console.log("trying to initially create user in auth table");
-    await supabase.auth.signUp({
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  supabase.auth.onAuthStateChange((event, session) => {
+    console.log(event, session);
+  });
+  const handleLogin = async () => {
+    const { error } = await supabase.auth.signInWithPassword({
       email,
       password,
-      options: {
-        emailRedirectTo: `${location.origin}/auth/callback`,
-      },
     });
-    // router.refresh();
-
-    // router.replace("/profile");
+    router.refresh();
+    // router.push("/student-dashboard");
   };
+
   return (
     <div style={{ margin: "5rem" }}>
+      <h1>This is the login form loaded from components, on the main page</h1>
+      <h2>
+        An app that leverages the use of project based learning to enhance the student learning
+        experience and empowers students with important critical thinking and problem solving
+        skills.
+      </h2>
+      <br />
       <Card>
-        <CardHeader>Sign up for an account</CardHeader>
+        <CardHeader>Login To Unstuck</CardHeader>
         <CardBody>
           <FormControl isRequired>
             <VStack
               spacing="5px"
               align="center">
-              <FormLabel>Email</FormLabel>
+              <FormLabel>Email Address</FormLabel>
               <Input
                 style={{ textAlign: "center" }}
                 placeholder="Email"
@@ -65,23 +71,28 @@ export default function SignupForm({ session }: { session: Session | null }) {
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
               />
+              {/* <form
+                action="/auth/callout"
+                method="post"> */}
               <Button
-                onClick={handleSignUp}
                 colorScheme="teal"
                 variant="outline"
-                size="lg">
+                size="lg"
+                onClick={handleLogin}>
                 {" "}
                 Submit
               </Button>
+              {/* </form> */}
               <CardFooter>
                 <p>
-                  Don't have an account?{" "}
+                  Want to{" "}
                   <Link
                     href="/signup"
-                    className="signup-link"
+                    className="login-link"
                     style={{ color: "fuchsia" }}>
-                    Signup
-                  </Link>
+                    Sign Up
+                  </Link>{" "}
+                  instead?
                 </p>
               </CardFooter>
             </VStack>
