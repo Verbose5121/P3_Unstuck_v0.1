@@ -16,14 +16,13 @@ import {
 } from "@chakra-ui/react";
 import { Session, createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 
 import type { Database } from "../../lib/database.types";
 
-export default function SignupForm({ session }: { session: Session | null }) {
+const SignupForm: FC = (props): JSX.Element => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const router = useRouter();
   const supabase = createClientComponentClient<Database>();
 
   const handleSignUp = async () => {
@@ -35,12 +34,16 @@ export default function SignupForm({ session }: { session: Session | null }) {
         emailRedirectTo: `${location.origin}/auth/callback`,
       },
     });
-    // router.refresh();
-
-    // router.replace("/profile");
   };
   return (
     <div style={{ margin: "5rem" }}>
+      <h1>This is the signin form loaded from components, on the main page</h1>
+      <h2>
+        An app that leverages the use of project based learning to enhance the student learning
+        experience and empowers students with important critical thinking and problem solving
+        skills.
+      </h2>
+      <br />
       <Card>
         <CardHeader>Sign up for an account</CardHeader>
         <CardBody>
@@ -92,4 +95,6 @@ export default function SignupForm({ session }: { session: Session | null }) {
       </Card>
     </div>
   );
-}
+};
+
+export default SignupForm;

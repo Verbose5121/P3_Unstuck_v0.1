@@ -14,9 +14,10 @@ import { Box, Center, Link, Button, Card, Input } from "@chakra-ui/react";
 import type { Database } from "../../lib/database.types";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useState } from "react";
+import { redirect } from "next/navigation";
 
-export default function Onboarding() {
-  const supabase = createClientComponentClient<Database>();
+export default async function Onboarding() {
+  const supabase = createClientComponentClient();
   const [userType, setUserType] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -33,7 +34,7 @@ export default function Onboarding() {
     console.log("trying to create new user_details record");
     const { data, error } = await supabase.from("user_details").upsert([
       {
-        user_id: user?.id,
+        user_id: user?.id as string,
         user_type: userType,
         first_name: firstName,
         last_name: lastName,

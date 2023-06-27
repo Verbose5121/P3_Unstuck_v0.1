@@ -1,9 +1,7 @@
 import type { NextComponentType, NextPageContext } from "next";
 import Link from "next/link";
 
-interface Props {}
-
-const Footer: NextComponentType<NextPageContext, {}, Props> = (props: Props) => {
+export default async function Footer() {
   return (
     <footer>
       <Link
@@ -13,6 +11,4 @@ const Footer: NextComponentType<NextPageContext, {}, Props> = (props: Props) => 
       </Link>
     </footer>
   );
-};
-
-export default Footer;
+}
