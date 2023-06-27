@@ -13,6 +13,7 @@ import {
   CardFooter,
   VStack,
 } from "@chakra-ui/react";
+import { cookies } from "next/headers";
 import { Session, createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
@@ -23,7 +24,7 @@ export default function LoginForm({ session }: { session: Session | null }) {
     const [password, setPassword] = useState("");
     const router = useRouter();
     const supabase = createClientComponentClient<Database>();
-  
+    let flag = false
     const handleLogin = async () => {
       console.log("Login check");
       await supabase.auth.signInWithPassword({
@@ -31,11 +32,16 @@ export default function LoginForm({ session }: { session: Session | null }) {
         password,
       });
 
-      router.replace ("/profile");
-
+      if (session) {
+        router.refresh();
+      } else {
+        flag = true
+      }
+      
+      
     };
 
-  
+
     return (
         <div style={{ margin: "5rem" }}>
         <Card>
