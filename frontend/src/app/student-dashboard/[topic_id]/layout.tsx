@@ -7,7 +7,6 @@ export default function StudentDashboardLayout({ children }: { children: React.R
     <>
       <h2>component for overall progress </h2>
       <h2>layout section for loading the specific progress step/route</h2>
-      {/* Carousel of featured products */}
       <div> {children}</div>
     </>
   );

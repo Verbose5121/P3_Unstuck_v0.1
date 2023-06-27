@@ -3,11 +3,14 @@ import { cookies } from "next/headers";
 
 import type { Database } from "../../../lib/database.types";
 import SignupForm from "../../../components/auth/SignupForm";
+import { Providers } from "@/providers";
 
 export default async function SignupPage() {
   return (
     <div>
-      <SignupForm />;
+      <Providers>
+        <SignupForm />;
+      </Providers>
     </div>
   );
 }
