@@ -2,7 +2,7 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import { Database } from "../../lib/database.types";
 import { redirect } from "next/navigation";
-import { Providers } from "@/providers";
+import { Providers } from "@/app/providers";
 
 export default async function StudentDashboardPage() {
   // const { data } = await supabase.from("user_details").select();
