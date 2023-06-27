@@ -18,24 +18,10 @@ export async function middleware(req: NextRequest) {
     return NextResponse.redirect(new URL("/student-dashboard", req.url));
   }
 
-  // if user is not signed in and the current path is not / redirect the user to /
-  // if (
-  //   (!user && req.nextUrl.pathname !== "/") ||
-  //   (!user && req.nextUrl.pathname === "/login") ||
-  //   (!user && req.nextUrl.pathname === "/signup")
-  // ) {
-  //   return NextResponse.redirect(new URL("/login", req.url));
-  // }
-  // if (
-  //   (!user && req.nextUrl.pathname !== "/") ||
-  //   (!user && req.nextUrl.pathname !== "/login") ||
-  //   (!user && req.nextUrl.pathname !== "/signup") ||
-  //   (!user && req.nextUrl.pathname !== "/about")
-  // ) {
-  //   return NextResponse.redirect(new URL("/login", req.url));
-  // }
-
   if (!user && req.nextUrl.pathname === "/student-dashboard") {
+    return NextResponse.redirect(new URL("/login", req.url));
+  }
+  if (!user && req.nextUrl.pathname === "/profile") {
     return NextResponse.redirect(new URL("/login", req.url));
   }
 
@@ -43,5 +29,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/student-dashboard", "/login", "/signup"],
+  matcher: ["/student-dashboard", "/login", "/signup", "/profile"],
 };
